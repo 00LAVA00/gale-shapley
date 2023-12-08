@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gale-Shapley Matching</title>
+</head>
+<body>
+    <h2>Setup Preferences</h2>
+    <form action="/preferences" method="post">
+        <input type="hidden" name="num_pairs" value="{{ num_pairs }}">
+        {% for i in range(num_pairs) %}
+            <label for="male_preference{{ i }}">Enter preferences for Male {{ i+1 }}:</label>
+            <input type="text" name="male_preference{{ i }}" placeholder="Enter preferences separated by commas" required>
+            <br>
+            <label for="female_preference{{ i }}">Enter preferences for Female {{ i+1 }}:</label>
+            <input type="text" name="female_preference{{ i }}" placeholder="Enter preferences separated by commas" required>
+            <br>
+        {% endfor %}
+        <button type="submit">Match Pairs</button>
+    </form>
+</body>
+</html>

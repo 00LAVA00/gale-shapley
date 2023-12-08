@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gale-Shapley Matching</title>
+</head>
+<body>
+    <h2>Preferences Submitted</h2>
+
+    <h3>Male Preferences:</h3>
+    <ul>
+        {% for preferences in male_preferences %}
+            <li>
+                Pair {{ loop.index }}:
+                <ul>
+                    {% for preference in preferences %}
+                        <li>{{ preference }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Female Preferences:</h3>
+    <ul>
+        {% for preferences in female_preferences %}
+            <li>
+                Pair {{ loop.index }}:
+                <ul>
+                    {% for preference in preferences %}
+                        <li>{{ preference }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

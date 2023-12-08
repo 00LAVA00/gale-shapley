@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gale-Shapley Matching</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to Gale-Shapley Matching</h1>
+    <form action="/setup" method="post">
+        <label for="num_pairs">Enter the number of pairs:</label>
+        <input type="number" name="num_pairs" required>
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>
