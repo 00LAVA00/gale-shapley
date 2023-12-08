@@ -11,28 +11,14 @@
     <h3>Male Preferences:</h3>
     <ul>
         {% for preferences in male_preferences %}
-            <li>
-                Pair {{ loop.index }}:
-                <ul>
-                    {% for preference in preferences %}
-                        <li>{{ preference }}</li>
-                    {% endfor %}
-                </ul>
-            </li>
+            <li>Male {{ loop.index }}: {{ preferences }}</li>
         {% endfor %}
     </ul>
 
     <h3>Female Preferences:</h3>
     <ul>
         {% for preferences in female_preferences %}
-            <li>
-                Pair {{ loop.index }}:
-                <ul>
-                    {% for preference in preferences %}
-                        <li>{{ preference }}</li>
-                    {% endfor %}
-                </ul>
-            </li>
+            <li>Female {{ loop.index }}: {{ preferences }}</li>
         {% endfor %}
     </ul>
 </body>

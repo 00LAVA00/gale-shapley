@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
+import pandas as pd
+import numpy as np
+from collections import Counter
+from copy import copy
 
 app = Flask(__name__)
+
+def gale_shapley(male_prefs, female_prefs):
+    return 1
 
 @app.route('/')
 def index():
@@ -33,7 +40,15 @@ def preferences():
 
     # Now, male_preferences and female_preferences hold the input preferences
     # You can use these arrays as needed, for example, pass them to your matching algorithm
+    print("Male Preferences:")
+    print(male_preferences)
+    print("Female Preferences:")
+    print(female_preferences)
 
-    return render_template('preferences.html', num_pairs=num_pairs)
+    matched_pairs = gale_shapley(male_preferences, female_preferences)
+    print(matched_pairs)
+
+    return render_template('preferences.html', num_pairs=num_pairs, male_preferences=male_preferences, female_preferences=female_preferences, matched_pairs=matched_pairs)
+
 if __name__ == '__main__':
     app.run(debug=True)

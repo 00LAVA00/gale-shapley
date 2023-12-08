@@ -13,6 +13,8 @@
             <label for="male_preference{{ i }}">Enter preferences for Male {{ i+1 }}:</label>
             <input type="text" name="male_preference{{ i }}" placeholder="Enter preferences separated by commas" required>
             <br>
+        {% endfor %}
+        {% for i in range(num_pairs) %}
             <label for="female_preference{{ i }}">Enter preferences for Female {{ i+1 }}:</label>
             <input type="text" name="female_preference{{ i }}" placeholder="Enter preferences separated by commas" required>
             <br>
