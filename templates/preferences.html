@@ -9,35 +9,6 @@
 <body>
     <h2>Preferences Submitted</h2>
 
-    <h3>Male Preferences:</h3>
-    <ul>
-        {% for preferences in male_preferences %}
-            <li>Male {{ loop.index }}: {{ preferences }}</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Female Preferences:</h3>
-    <ul>
-        {% for preferences in female_preferences %}
-            <li>Female {{ loop.index }}: {{ preferences }}</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Women's List:</h3>
-    <p>{{ women_list }}</p>
-
-    <h3>Men's List:</h3>
-    <p>{{ man_list }}</p>
-
-    <h3>en:</h3>
-    {{ women_html_table|safe }}
-
-    <h3>Men's Preferences Table:</h3>
-    {{ man_html_table|safe }}
-
-
-
-
     <h3 class="text-center">Matched Pairs:</h3>
     <div class="container">
         <table class="table table-dark table-striped table-bordered table-rounded mx-auto">
@@ -61,7 +32,13 @@
             </tbody>
         </table>
     </div>
+    <h3>Process Details:</h3>
+    <div>
+        <h4>Iterations:</h4>
+        {{ iteration_states|safe }}
+    </div>
     
+
 
 </body>
 </html>
