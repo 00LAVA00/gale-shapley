@@ -123,17 +123,21 @@ def preferences():
     female_preferences = []
 
     for i in range(num_pairs):
-        male_key = f"male_preference{i}"
-        female_key = f"female_preference{i}"
+        male_preferences_row = []
+        female_preferences_row = []
 
-        # Get preferences from the form data
-        male_preference = request.form.get(male_key, '').split(',')
-        female_preference = request.form.get(female_key, '').split(',')
+        for j in range(num_pairs):
+            male_key = f"male_preference{i}_{j}"
+            female_key = f"female_preference{i}_{j}"
 
-        # Convert preferences to integers and append to arrays
-        male_preferences.append(list(map(int, male_preference)))
-        female_preferences.append(list(map(int, female_preference)))
+            male_preference = int(request.form.get(male_key, 0))  # assuming 0 is a default value if not selected
+            female_preference = int(request.form.get(female_key, 0))  # assuming 0 is a default value if not selected
 
+            male_preferences_row.append(male_preference)
+            female_preferences_row.append(female_preference)
+
+        male_preferences.append(male_preferences_row)
+        female_preferences.append(female_preferences_row)
     # Now, male_preferences and female_preferences hold the input preferences
     # You can use these arrays as needed, for example, pass them to your matching algorithm
     print("Male Preferences:")

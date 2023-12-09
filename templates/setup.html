@@ -9,16 +9,37 @@
     <h2>Setup Preferences</h2>
     <form action="/preferences" method="post">
         <input type="hidden" name="num_pairs" value="{{ num_pairs }}">
+        
+        <!-- Preferences for Males -->
+        <h3>Preferences for Males</h3>
         {% for i in range(num_pairs) %}
-            <label for="male_preference{{ i }}">Enter preferences for Male {{ i+1 }}:</label>
-            <input type="text" name="male_preference{{ i }}" placeholder="Enter preferences separated by commas" required>
-            <br>
+            <h4>Male {{ i+1 }}</h4>
+            {% for j in range(num_pairs) %}
+                <label for="male{{ i }}_pref{{ j }}">Preference {{ j+1 }}:</label>
+                <select id="male{{ i }}_pref{{ j }}" name="male_preference{{ i }}_{{ j }}" required>
+                    {% for k in range(num_pairs) %}
+                        <option value="{{ k+1 }}">Female {{ k+1 }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            {% endfor %}
         {% endfor %}
+        
+        <!-- Preferences for Females -->
+        <h3>Preferences for Females</h3>
         {% for i in range(num_pairs) %}
-            <label for="female_preference{{ i }}">Enter preferences for Female {{ i+1 }}:</label>
-            <input type="text" name="female_preference{{ i }}" placeholder="Enter preferences separated by commas" required>
-            <br>
+            <h4>Female {{ i+1 }}</h4>
+            {% for j in range(num_pairs) %}
+                <label for="female{{ i }}_pref{{ j }}">Preference {{ j+1 }}:</label>
+                <select id="female{{ i }}_pref{{ j }}" name="female_preference{{ i }}_{{ j }}" required>
+                    {% for k in range(num_pairs) %}
+                        <option value="{{ k+1 }}">Male {{ k+1 }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            {% endfor %}
         {% endfor %}
+        
         <button type="submit">Match Pairs</button>
     </form>
 </body>
