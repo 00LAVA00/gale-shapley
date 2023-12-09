@@ -107,7 +107,18 @@ def preferences():
     print(matched_pairs)
     print(count)
 
-    return render_template('preferences.html', num_pairs=num_pairs, male_preferences=male_preferences, female_preferences=female_preferences, matched_pairs=matched_pairs)
+    # Convert DataFrames to HTML tables
+    women_html_table = women_df.to_html(classes='table  table-dark table-bordered table-striped', index=True)
+    man_html_table = man_df.to_html(classes='table  table-dark table-bordered table-striped', index=True)
+
+    return render_template('preferences.html', num_pairs=num_pairs, male_preferences=male_preferences,
+                           female_preferences=female_preferences, matched_pairs=matched_pairs,
+                           women_html_table=women_html_table, man_html_table=man_html_table,
+                           women_list=women_list, man_list=man_list)
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
