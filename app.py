@@ -6,8 +6,56 @@ from copy import copy
 
 app = Flask(__name__)
 
-def gale_shapley(male_prefs, female_prefs):
-    return 1
+def create_matching_dataframes(num_boys, boys_preference_matrix, girls_preference_matrix):
+    # Lists of men and women
+    man_list = [chr(ord('a') + i) for i in range(num_boys)]
+    women_list = [chr(ord('A') + i) for i in range(num_boys)]
+
+    # Creating DataFrame for women's preferences
+    women_df = pd.DataFrame({women_list[i]: girls_preference_matrix[i] for i in range(len(women_list))})
+    women_df.index = man_list
+
+    # Creating DataFrame for men's preferences
+    man_df = pd.DataFrame({women_list[i]: [row[i] for row in boys_preference_matrix] for i in range(len(women_list))})
+    man_df.index = man_list
+
+    return women_df, man_df,women_list,man_list
+
+
+def gale_shapley(women_df, man_df, women_list, man_list):
+    # dict to control which women each man can make proposals
+    women_available = {man: copy(women_list) for man in man_list}
+    # waiting list of men that were able to create a pair on each iteration
+    waiting_list = []
+    # dict to store created pairs
+    proposals = {}
+    # variable to count the number of iterations
+    count = 0
+
+    while len(waiting_list) < len(man_list):
+        for man in man_list:
+            if man not in waiting_list:
+                women = women_available[man]
+                best_choice = min(women, key=lambda w: man_df.loc[man, w])
+                proposals[(man, best_choice)] = (man_df.loc[man, best_choice], women_df.loc[man, best_choice])
+
+        overlays = Counter([key[1] for key in proposals.keys()])
+
+        for women in overlays.keys():
+            if overlays[women] > 1:
+                pairs_to_drop = sorted({pair: proposals[pair] for pair in proposals.keys() if women in pair}.items(),
+                                       key=lambda x: x[1][1])[1:]
+
+                for p_to_drop in pairs_to_drop:
+                    del proposals[p_to_drop[0]]
+                    _women = copy(women_available[p_to_drop[0][0]])
+                    _women.remove(p_to_drop[0][1])
+                    women_available[p_to_drop[0][0]] = _women
+
+        waiting_list = [man[0] for man in proposals.keys()]
+        count += 1
+
+    return proposals,count
 
 @app.route('/')
 def index():
@@ -45,8 +93,19 @@ def preferences():
     print("Female Preferences:")
     print(female_preferences)
 
-    matched_pairs = gale_shapley(male_preferences, female_preferences)
+    #converting the input matrix taken form the webpage into DataFrames using "create_matching_dataframes" func
+    women_df, man_df,women_list,man_list= create_matching_dataframes(num_pairs,male_preferences,female_preferences) 
+    print("Women's Preferences:")
+    print(women_df)
+    print("Man's Preferences:")
+    print(man_df)
+
+    
+    #calling gale_shapley function to implement the algorithm
+    matched_pairs,count = gale_shapley(women_df, man_df,women_list, man_list)
+    #printing mathed_pairs
     print(matched_pairs)
+    print(count)
 
     return render_template('preferences.html', num_pairs=num_pairs, male_preferences=male_preferences, female_preferences=female_preferences, matched_pairs=matched_pairs)
 
