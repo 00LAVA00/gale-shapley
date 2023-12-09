@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 def create_matching_dataframes(num_boys, boys_preference_matrix, girls_preference_matrix):
     # Lists of men and women
-    man_list = [chr(ord('a') + i) for i in range(num_boys)]
-    women_list = [chr(ord('A') + i) for i in range(num_boys)]
+    man_list = [('M' + str(i+1)) for i in range(num_boys)]
+    women_list = [('F' + str(i+1)) for i in range(num_boys)]
 
     # Creating DataFrame for women's preferences
     women_df = pd.DataFrame({women_list[i]: girls_preference_matrix[i] for i in range(len(women_list))})
