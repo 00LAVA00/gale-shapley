@@ -4,14 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gale-Shapley Matching</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&family=Raleway:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
-    <h1>Welcome to Gale-Shapley Matching</h1>
-    <form action="/setup" method="post">
-        <label for="num_pairs">Enter the number of pairs:</label>
-        <input type="number" name="num_pairs" required>
-        <button type="submit">Next</button>
-    </form>
+ 
+    <div class="mainblock">
+    <div class=" py-5  text-center">
+        <img src="../images/Screenshot 2023-12-09 at 5.05.13 PM-modified.png" class="d-block mx-auto mb-4" alt="logo" width="200" height="100";>
+        <h2 class="display-6 font  px-4 py-2">ECO200 : Managerial Economics Project</h2>
+        <h4 class="font1 fw-bold">A Visual Guide to Gale-Shapley's Stable Pairing</h4>
+        <div class="col-lg-10 mx-auto">
+          <h3 class="text-start pt-3 font3 fs-2 fw-bold">Introduction</h3>
+          <p class="text-start font2">Gale-Shapley algorithm, introduced by economists David Gale and Lloyd Shapley, is a mathematical solution to the stable marriage problem. Originally devised to optimize pairing in a scenario where individuals have preferences over one another, this algorithm ensures stable and satisfactory matches by employing a systematic approach of proposals and rejections. The algorithm finds its applications beyond romantic pairings, making it a fundamental tool in various matching scenarios. Begin your exploration by specifying the number of pairs for boys and girls and witness the algorithm in action.</p>
+          <h3 class="text-start  font3 fs-2 pt-3 fw-bold">Setup</h3>
+          <form action="/setup" method="post">
+            <label for="num_pairs" class="font pt-0">Enter the number of pairs:</label>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <input type="number" name="num_pairs" required class="btn kk btn-primary btn-lg px-4 m-0 pt-0 gap-3">
+                <button type="submit" class="btn btn-outline-secondary btn-lg px-5">Next</button>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    <svg class="arrows">
+        <path class="a1" d="M0 0 L30 32 L60 0"></path>
+        <path class="a2" d="M0 20 L30 52 L60 20"></path>
+        <path class="a3" d="M0 40 L30 72 L60 40"></path>
+    </svg>
+      <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light pb-3 mt-5">Group Details</h1>
+        <table class="table border ">
+            <thead >
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Enrollment Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Aryan Prajapati</td>
+                <td>AU2140090</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Nevil Jobanputra</td>
+                <td>AU2140209</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Aaditya Yadav</td>
+                <td>AU2140094</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Milee Bajpai</td>
+                <td>AU2140158</td>
+              </tr>
+            
+            </tbody>
+          </table>
+          
+        <p class="lead text-body-secondary pt-3 fw-bold">Under the guidance of: Prof. Rahul Singh</p>
+      </div>
+    </div>
+  </section>
+    
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-body-secondary">  github </p>
+
+    <a href="https://github.com/Nevil844/gale-shapley" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="../templates/index.html" class="nav-link px-2 text-body-secondary">Home</a></li>
+    </ul>
+  </footer>
+    
 </body>
 </html>
