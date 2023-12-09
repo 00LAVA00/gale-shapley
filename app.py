@@ -6,6 +6,7 @@ from copy import copy
 
 app = Flask(__name__)
 
+
 def create_matching_dataframes(num_boys, boys_preference_matrix, girls_preference_matrix):
     # Lists of men and women
     man_list = [('M' + str(i+1)) for i in range(num_boys)]
@@ -19,10 +20,12 @@ def create_matching_dataframes(num_boys, boys_preference_matrix, girls_preferenc
     man_df = pd.DataFrame({women_list[i]: [row[i] for row in boys_preference_matrix] for i in range(len(women_list))})
     man_df.index = man_list
 
-    return women_df, man_df,women_list,man_list
+    return women_df, man_df, women_list, man_list
+
 
 
 def gale_shapley(women_df, man_df, women_list, man_list):
+    xxx=""
     # dict to control which women each man can make proposals
     women_available = {man: copy(women_list) for man in man_list}
     # waiting list of men that were able to create a pair on each iteration
@@ -55,7 +58,52 @@ def gale_shapley(women_df, man_df, women_list, man_list):
         waiting_list = [man[0] for man in proposals.keys()]
         count += 1
 
-    return proposals,count
+        # Print information for this iteration
+        a=f"Iteration {count}:"
+        xxx+=a+"\n"
+        for pair, values in proposals.items():
+            b=f"{pair[0]} proposes to {pair[1]} with preference values {values}"
+            xxx+=b+"\n"
+
+        overlays = Counter([key[1] for key in proposals.keys()])
+        a=f"Overlapping proposals: {overlays}"
+        xxx+=a+"\n"
+
+        for woman, count in overlays.items():
+            if count > 1:
+                c=f"Conflict for {woman}. Choosing the best proposal."
+                xxx+=c+"\n"
+        
+        #print(f"Waiting list: {', '.join(waiting_list)}")
+        #print("Women available:")
+        ll=f"Waiting list: {', '.join(waiting_list)}"
+        xxx+=ll+"\n" + "Women available:\n"
+        for man, women in women_available.items():
+            xy=f"{man}: {', '.join(women)}"
+            xxx+=xy+"\n"      
+        print("\n")
+    #print(xxx)
+    iteration_states = []
+
+    while len(waiting_list) < len(man_list):
+        iteration_state = {
+            "proposals": dict(proposals),
+            "waiting_list": list(waiting_list),
+            "women_available": dict(women_available),
+            "reasons": {},  # Track reasons for each proposal
+        }
+
+        for pair, values in proposals.items():
+            male, female = pair
+            iteration_state["reasons"][pair] = {
+                "preference_values": values,
+                "male_preferences": list(man_df.loc[male]),
+                "female_preferences": list(women_df.loc[female]),
+            }
+
+        iteration_states.append(iteration_state)
+        print(iteration_states)
+    return dict(proposals), xxx
 
 @app.route('/')
 def index():
@@ -102,10 +150,16 @@ def preferences():
 
     
     #calling gale_shapley function to implement the algorithm
-    matched_pairs,count = gale_shapley(women_df, man_df,women_list, man_list)
+    matched_pairs, iteration_states = gale_shapley(women_df, man_df,women_list, man_list)
     #printing mathed_pairs
     print(matched_pairs)
-    print(count)
+    print("Iteration States:\n ",iteration_states)
+
+    
+    iteration_states_lines = ["<p>" + line + "</p>" for line in iteration_states.split("\n")]
+
+    # Join the lines into a single string
+    iteration_states_html = "\n".join(iteration_states_lines)
 
     # Convert DataFrames to HTML tables
     women_html_table = women_df.to_html(classes='table  table-dark table-bordered table-striped', index=True)
@@ -114,7 +168,7 @@ def preferences():
     return render_template('preferences.html', num_pairs=num_pairs, male_preferences=male_preferences,
                            female_preferences=female_preferences, matched_pairs=matched_pairs,
                            women_html_table=women_html_table, man_html_table=man_html_table,
-                           women_list=women_list, man_list=man_list)
+                           women_list=women_list, man_list=man_list,iteration_states=iteration_states_html)
 
 
 
