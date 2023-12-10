@@ -14,8 +14,13 @@ body{
 }
 
 
+#container12{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
 .font{
-    font-family: 'Bitter', sans-serif;
+    font-family: 'Bitter' !important;
     color: aliceblue;
     font-weight:bolder
 }
@@ -112,3 +117,4 @@ button:hover {
     animation-delay:0s;
     -webkit-animation-delay:0s; /* Safari 和 Chrome */
 }
+
