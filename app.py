@@ -76,12 +76,12 @@ def gale_shapley(women_df, man_df, women_list, man_list):
         
         #print(f"Waiting list: {', '.join(waiting_list)}")
         #print("Women available:")
-        ll=f"Waiting list: {', '.join(waiting_list)}"
-        xxx+=ll+"\n" + "Women available:\n"
-        for man, women in women_available.items():
-            xy=f"{man}: {', '.join(women)}"
-            xxx+=xy+"\n"      
-        print("\n")
+        # ll=f"Waiting list: {', '.join(waiting_list)}"
+        # xxx+=ll+"\n" + "Women available:\n"
+        # for man, women in women_available.items():
+        #     xy=f"{man}: {', '.join(women)}"
+        #     xxx+=xy+"\n"      
+        # print("\n")
     #print(xxx)
     iteration_states = []
 
@@ -140,24 +140,24 @@ def preferences():
         female_preferences.append(female_preferences_row)
     # Now, male_preferences and female_preferences hold the input preferences
     # You can use these arrays as needed, for example, pass them to your matching algorithm
-    print("Male Preferences:")
-    print(male_preferences)
-    print("Female Preferences:")
-    print(female_preferences)
+    # print("Male Preferences:")
+    # print(male_preferences)
+    # print("Female Preferences:")
+    # print(female_preferences)
 
     #converting the input matrix taken form the webpage into DataFrames using "create_matching_dataframes" func
     women_df, man_df,women_list,man_list= create_matching_dataframes(num_pairs,male_preferences,female_preferences) 
-    print("Women's Preferences:")
-    print(women_df)
-    print("Man's Preferences:")
-    print(man_df)
+    # print("Women's Preferences:")
+    # print(women_df)
+    # print("Man's Preferences:")
+    # print(man_df)
 
     
     #calling gale_shapley function to implement the algorithm
     matched_pairs, iteration_states = gale_shapley(women_df, man_df,women_list, man_list)
     #printing mathed_pairs
-    print(matched_pairs)
-    print("Iteration States:\n ",iteration_states)
+    # print(matched_pairs)
+    # print("Iteration States:\n ",iteration_states)
  
     
     iteration_states_lines = []
