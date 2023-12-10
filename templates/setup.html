@@ -31,10 +31,10 @@
                 <div >
                     <h4 class="pt-3">Male {{ i+1 }}</h4>
                     {% for j in range(num_pairs) %}
-                        <label for="male{{ i }}_pref{{ j }}">Preference {{ j+1 }}:</label>
+                        <label for="male{{ i }}_pref{{ j }}">Female {{ j+1 }}:</label>
                         <select id="male{{ i }}_pref{{ j }}" name="male_preference{{ i }}_{{ j }}" required>
                             {% for k in range(num_pairs) %}
-                                <option value="{{ k+1 }}">Female {{ k+1 }}</option>
+                                <option value="{{ k+1 }}">Preference {{ k+1 }}</option>
                             {% endfor %}
                         </select>
                         <br>
@@ -51,10 +51,10 @@
                 {% for i in range(num_pairs) %}
                     <h4 class="pt-3">Female {{ i+1 }}</h4>
                     {% for j in range(num_pairs) %}
-                        <label for="female{{ i }}_pref{{ j }}">Preference {{ j+1 }}:</label>
+                        <label for="female{{ i }}_pref{{ j }}">Male {{ j+1 }}:</label>
                         <select id="female{{ i }}_pref{{ j }}" name="female_preference{{ i }}_{{ j }}" required>
                             {% for k in range(num_pairs) %}
-                                <option value="{{ k+1 }}">Male {{ k+1 }}</option>
+                                <option value="{{ k+1 }}">Preference {{ k+1 }}</option>
                             {% endfor %}
                         </select>
                         <br>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="pt-3 pb-xxl-5" style="padding-left: 13%;">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/-xleupMl9IE?si=PLMuSEXvXQRTcqTq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/p8NUGuVDlT8?si=uM4gLHcfNeI7oCwJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
 
     </div>
@@ -96,7 +96,7 @@
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="/" class="nav-link pe-5 text-body-secondary">Home</a></li>
+      <li class="nav-item"><a href="../templates/index.html" class="nav-link pe-5 text-body-secondary">Home</a></li>
     </ul>
   </footer>
 
