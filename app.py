@@ -158,16 +158,22 @@ def preferences():
     #printing mathed_pairs
     print(matched_pairs)
     print("Iteration States:\n ",iteration_states)
-
+ 
     
-    iteration_states_lines = ["<p>" + line + "</p>" for line in iteration_states.split("\n")]
+    iteration_states_lines = []
+    for line in iteration_states.split("\n"):
+        if line.startswith("Iteration"):
+            iteration_states_lines.append("<p style='padding-top: 10px;'><strong>" + line + "</strong></p>")
+        else:
+            iteration_states_lines.append("<p>&emsp;" + line + "</p>")
 
     # Join the lines into a single string
     iteration_states_html = "\n".join(iteration_states_lines)
 
+
     # Convert DataFrames to HTML tables
-    women_html_table = women_df.to_html(classes='table  table-dark table-bordered table-striped', index=True)
-    man_html_table = man_df.to_html(classes='table  table-dark table-bordered table-striped', index=True)
+    women_html_table = women_df.to_html(classes='table  table-info table-bordered table-striped rounded-3', index=True)
+    man_html_table = man_df.to_html(classes='table  table-info table-bordered table-striped rounded-3', index=True)
 
     return render_template('preferences.html', num_pairs=num_pairs, male_preferences=male_preferences,
                            female_preferences=female_preferences, matched_pairs=matched_pairs,
