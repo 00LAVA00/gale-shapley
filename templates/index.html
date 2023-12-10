@@ -94,14 +94,26 @@
   
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
-            Given a set of <em>n</em> proposers (former. "men") and recipients (former. "women"), each with their own preferences, our goal is to find an assignment such that:<ul><li>Each proposer ends up with exactly one recipient.</li><li>No pair of people (not already partners) would leave their current partners to engage with each other.</li></ul>This is known as a <em>stable matching</em>. Its applications range from economics and networks to medical school assignments and, yes, romance.<br> <br>The Gale-Shapley Algorithm proposes a greedy solution to this. We process proposers arbitrarily and go down each proposer's list of preferences for recipients. In each round, if a recipient is free, this <em>(proposer, recipient)</em> pair becomes temporarily "engaged". If the recipient is already engaged, it will leave (and thus free) its current partner only if it prefers this proposer more. This process continues until all <em>n</em> proposers and recipients are engaged with one other person.<br> <br>It is proven to produce a unique and optimal solution. It runs in quadratic time
+          Considering a group of 'n' proposers (formerly known as "men") and recipients (formerly known as "women"), each with their individual preferences, our objective is to establish an assignment that satisfies the following conditions:</p>
+
+          <ul>
+              <li>Each proposer is paired with exactly one recipient.</li>
+              <li>No pair of individuals, not already in a partnership, would choose to leave their current partners for each other.</li>
+          </ul>
+      
+          <p>This concept is commonly referred to as a "stable matching," and its applications span various fields such as economics, networks, medical school assignments, and, of course, romantic pairings.</p>
+      
+          <p>The Gale-Shapley Algorithm offers a pragmatic solution to this problem. It proceeds by processing proposers arbitrarily and navigating through each proposer's list of preferences for recipients. During each iteration, if a recipient is unengaged, the (proposer, recipient) pair forms a temporary "engagement." If the recipient is already engaged, it will only switch partners if it prefers the current proposer more. This process continues until all 'n' proposers and recipients are engaged with one another.</p>
+      
+          <p>The algorithm is proven to yield a unique and optimal solution, operating with quadratic time complexity.</p>
         </div>
       </div>
     </div>
   </div>
     
-  <footer class="d-flex mainblock flex-wrap justify-content-between align-items-center py-3 mt-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary" style="padding-left: 10px;">  github </p>
+  <!--footer code-->
+  <footer class="d-flex mainblock flex-wrap justify-content-between align-items-center py-4 mt-4 border-top">
+    <p class="col-md-4 mb-0  ps-5 text-body-secondary">  GitHub </p>
 
     <a href="https://github.com/Nevil844/gale-shapley" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
@@ -110,7 +122,7 @@
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="../templates/index.html" class="nav-link px-2 text-body-secondary" style="padding-right: 20px;">Home</a></li>
+      <li class="nav-item"><a href="../templates/index.html" class="nav-link pe-5 text-body-secondary">Home</a></li>
     </ul>
   </footer>
     
